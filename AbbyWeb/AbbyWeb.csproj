@@ -20,7 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Categories\Create.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Categories\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Categories\Create.cshtml" />
   </ItemGroup>
 
 </Project>
