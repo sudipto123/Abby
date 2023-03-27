@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AbbyWeb.Pages.Categories
 {
+    [BindProperties]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
@@ -15,6 +16,12 @@ namespace AbbyWeb.Pages.Categories
         }
         public void OnGet()
         {
+        }
+        public IActionResult OnPost()
+        {
+            _db.Category.Add(Category);
+            _db.SaveChanges();
+            return RedirectToPage("Index");
         }
     }
 }
