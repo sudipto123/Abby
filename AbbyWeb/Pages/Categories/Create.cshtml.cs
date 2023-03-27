@@ -19,9 +19,17 @@ namespace AbbyWeb.Pages.Categories
         }
         public IActionResult OnPost()
         {
-            _db.Category.Add(Category);
-            _db.SaveChanges();
-            return RedirectToPage("Index");
+            if(Category.Name == Category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError(string.Empty, "The Display Order and Name can not be same");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Category.Add(Category);
+                _db.SaveChanges();
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
     }
 }
