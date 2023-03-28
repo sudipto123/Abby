@@ -23,7 +23,7 @@ namespace AbbyWeb.Pages.Categories
             }
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             Category? obj = _db.Category.Find(Category.Id);
             if (obj == null)
@@ -31,7 +31,8 @@ namespace AbbyWeb.Pages.Categories
                 return NotFound();
             }
             _db.Category.Remove(obj);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
+            TempData["success"] = "Category deleted successfully";
             return RedirectToPage("Index");
         }
     }

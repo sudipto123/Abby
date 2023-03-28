@@ -23,13 +23,13 @@ namespace AbbyWeb.Pages.Categories
             }
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
                 _db.Category.Update(Category);
-                _db.SaveChanges();
-                //TempData["success"] = "Category updated successfully";
+                await _db.SaveChangesAsync();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToPage("Index");
             }
             return Page();

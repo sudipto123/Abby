@@ -17,7 +17,7 @@ namespace AbbyWeb.Pages.Categories
         public void OnGet()
         {
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if(Category.Name == Category.DisplayOrder.ToString())
             {
@@ -25,8 +25,11 @@ namespace AbbyWeb.Pages.Categories
             }
             if (ModelState.IsValid)
             {
-                _db.Category.Add(Category);
-                _db.SaveChanges();
+                await _db.Category.AddAsync(Category);
+                await _db.SaveChangesAsync();
+
+                TempData["success"] = "Category created successfully";
+
                 return RedirectToPage("Index");
             }
             return Page();
