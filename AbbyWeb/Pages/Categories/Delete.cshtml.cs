@@ -32,7 +32,7 @@ namespace AbbyWeb.Pages.Categories
             }
             _db.Category.Remove(obj);
             await _db.SaveChangesAsync();
-            TempData["success"] = "Category deleted successfully";
+            TempData["error"] = "Category deleted successfully";
             return RedirectToPage("Index");
         }
     }
